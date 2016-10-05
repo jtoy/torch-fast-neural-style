@@ -1,8 +1,8 @@
 Inference:
   command: bash inference.sh
   parameters:
-    -input_dir:
-      flag: -input_dir
+    -input_image:
+      flag: -input_image
       type: file
     -image_size:
       flag: -image_size
