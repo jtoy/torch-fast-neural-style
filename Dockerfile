@@ -1,4 +1,4 @@
-FROM somatic/k802
+FROM somatic/k802x
 #FROM kaixhin/cuda-torch
 ENV DEBIAN_FRONTEND noninteractive
 
