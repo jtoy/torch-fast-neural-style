@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN git clone https://github.com/torch/distro.git ~/torch --recursive
 RUN cd ~/torch; bash install-deps;
-RUN ./install.sh
+RUN cd ~/torch; ./install.sh
 RUN source ~/.bashrc
 
 RUN /home/ubuntu/torch/install/bin/luarocks install loadcaffe
