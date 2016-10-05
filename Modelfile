@@ -2,10 +2,13 @@ Inference:
   command: bash inference.sh
   parameters:
     -input_dir:
+      flag: -input_dir
       type: file
     -image_size:
+      flag: -image_size
       type: int
-      default: 768
+      default: 1024
     -median_filter:
+      flag: -median_filter
       type: int
       default: 3
