@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN git clone https://github.com/torch/distro.git ~/torch --recursive
 RUN cd ~/torch; bash install-deps;
 RUN cd ~/torch; ./install.sh
-
+RUN source /root/.bashrc
 
 RUN /home/ubuntu/torch/install/bin/luarocks install loadcaffe
 RUN pip install boto flask jinja2 markupsafe werkzeug futures itsdangerous requests wsgiref pyyaml py-cpuinfo
