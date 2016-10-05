@@ -17,14 +17,14 @@ directory of images.
 local cmd = torch.CmdLine()
 
 -- Model options
-cmd:option('-model', 'models/instance_norm/candy.t7')
+cmd:option('-model', '/data/model_cache/model.t7')
 cmd:option('-image_size', 768)
 cmd:option('-median_filter', 3)
 cmd:option('-timing', 0)
 
 -- Input / output options
-cmd:option('-input_image', 'images/content/chicago.jpg')
-cmd:option('-output_image', 'out.png')
+cmd:option('-input_image', '')
+cmd:option('-output_image', '')
 cmd:option('-input_dir', '')
 cmd:option('-output_dir', '')
 
@@ -63,14 +63,14 @@ local function main()
 
   local preprocess_method = checkpoint.opt.preprocessing or 'vgg'
   local preprocess = preprocess[preprocess_method]
-  
+
   local function run_image(in_path, out_path)
     local img = image.load(in_path, 3)
     if opt.image_size > 0 then
       img = image.scale(img, opt.image_size)
     end
     local H, W = img:size(2), img:size(3)
-    
+
     local img_pre = preprocess.preprocess(img:view(1, 3, H, W)):type(dtype)
     local timer = nil
     if opt.timing == 1 then
@@ -122,4 +122,3 @@ end
 
 
 main()
-

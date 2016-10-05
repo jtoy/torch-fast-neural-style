@@ -1,0 +1,11 @@
+Inference:
+  command: bash inference.sh
+  parameters:
+    -input_dir:
+      type: file
+    -image_size:
+      type: int
+      default: 768
+    -median_filter:
+      type: int
+      default: 3
