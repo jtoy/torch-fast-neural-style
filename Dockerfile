@@ -2,7 +2,10 @@ FROM somatic/k802x
 #FROM kaixhin/cuda-torch
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN sudo apt-get install luarocks
+RUN git clone https://github.com/torch/distro.git ~/torch --recursive
+RUN cd ~/torch; bash install-deps;
+RUN ./install.sh
+RUN source ~/.bashrc
 
 RUN /home/ubuntu/torch/install/bin/luarocks install loadcaffe
 RUN pip install boto flask jinja2 markupsafe werkzeug futures itsdangerous requests wsgiref pyyaml py-cpuinfo
