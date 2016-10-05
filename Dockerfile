@@ -19,6 +19,8 @@ RUN apt-get clean
 RUN apt-get install -y linux-image-extra-`uname -r` linux-headers-`uname -r` linux-image-`uname -r`
 RUN apt-get install -y cuda
 
+RUN /home/ubuntu/torch/install/bin/luarocks install image
+RUN /home/ubuntu/torch/install/bin/luarocks install lua-cjson
 RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install nn
 RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install cutorch
 RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install cunn
