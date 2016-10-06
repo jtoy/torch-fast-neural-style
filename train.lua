@@ -21,7 +21,7 @@ Train a feedforward style transfer model
 cmd:option('-arch', 'c9s1-32,d64,d128,R128,R128,R128,R128,R128,u64,u32,c9s1-3')
 cmd:option('-use_instance_norm', 1)
 cmd:option('-task', 'style', 'style|upsample')
-cmd:option('-h5_file', 'data/ms-coco-256.h5')
+cmd:option('-h5_file', '/data/input/ms-coco-256.h5')
 cmd:option('-padding_type', 'reflect-start')
 cmd:option('-tanh_constant', 150)
 cmd:option('-preprocessing', 'vgg')
@@ -35,11 +35,11 @@ cmd:option('-tv_strength', 1e-6)
 -- Options for feature reconstruction loss
 cmd:option('-content_weights', '1.0')
 cmd:option('-content_layers', '16')
-cmd:option('-loss_network', 'models/vgg16.t7')
+cmd:option('-loss_network', '/data/input/vgg16.t7')
 
 -- Options for style reconstruction loss
-cmd:option('-style_image', 'images/styles/candy.jpg')
-cmd:option('-style_image_size', 256)
+cmd:option('-style_image', '')
+cmd:option('-style_image_size', 400)
 cmd:option('-style_weights', '5.0')
 cmd:option('-style_layers', '4,9,16,23')
 cmd:option('-style_target_type', 'gram|mean')
@@ -91,7 +91,7 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
   if use_cudnn then cudnn.convert(model, cudnn) end
   model:training()
   print(model)
-  
+
   -- Set up the pixel loss function
   local pixel_crit
   if opt.pixel_loss_weight > 0 then
@@ -143,12 +143,12 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
       return y
     end
   end
-  
+
 
   local function f(x)
     assert(x == params)
     grad_params:zero()
-    
+
     local x, y = loader:getBatch('train')
     x, y = x:type(dtype), y:type(dtype)
 
@@ -205,7 +205,7 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
 
     -- Add regularization
     -- grad_params:add(opt.weight_decay, params)
- 
+
     return loss, grad_params
   end
 
@@ -318,4 +318,3 @@ end
 
 
 main()
-

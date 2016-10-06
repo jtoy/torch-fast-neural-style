@@ -12,3 +12,22 @@ Inference:
       flag: -median_filter
       type: int
       default: 3
+Train:
+  command: bash train.sh
+  parameters:
+    -style_image_size:
+      flag: -style_image_size
+      type: int
+      default: 400
+    -style_weights:
+      flag: -style_weights
+      type: float
+      default: 1.0
+    -content_weights:
+      flag: -content_weights
+      type: float
+      default: 5.0
+    -tv_strength:
+      flag: -tv_strength
+      type: float
+      default: 1e-6
