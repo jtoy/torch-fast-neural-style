@@ -15,6 +15,10 @@ Inference:
 Train:
   command: bash train.sh
   parameters:
+    -style_image:
+      flag: -style_image
+      type: file
+      required: true
     -style_image_size:
       flag: -style_image_size
       type: int
