@@ -9,6 +9,12 @@ RUN cd /home/ubuntu/torch; ./install.sh
 RUN /home/ubuntu/torch/install/bin/luarocks install loadcaffe
 
 RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install torch
+
+RUN cd /tmp && wget https://cl.ly/1r0Z301h443l/download/cudnn-7.5-linux-x64-v5.0-ga.tgz
+RUN cd /usr/local &&tar xzvf /tmp/cudnn-7.5-linux-x64-v5.0-ga.tgz
+RUN ldconfig
+
+
 RUN /home/ubuntu/torch/install/bin/luarocks install image
 RUN /home/ubuntu/torch/install/bin/luarocks install lua-cjson
 RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install nn
