@@ -21,7 +21,7 @@ Train a feedforward style transfer model
 cmd:option('-arch', 'c9s1-32,d64,d128,R128,R128,R128,R128,R128,u64,u32,c9s1-3')
 cmd:option('-use_instance_norm', 1)
 cmd:option('-task', 'style', 'style|upsample')
-cmd:option('-h5_file', '/data/data_sets/ms-coco-256.h5')
+cmd:option('-h5_file', '/data/data_setsc/ms-coco-256.h5')
 cmd:option('-padding_type', 'reflect-start')
 cmd:option('-tanh_constant', 150)
 cmd:option('-preprocessing', 'vgg')
@@ -285,7 +285,7 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
         val_loss_history_ts=val_loss_history_ts,
         style_loss_history=style_loss_history,
       }
-      local filename = string.format('%s.json', opt.checkpoint_name)
+      local filename = string.format('/data/output/%s.json', opt.checkpoint_name)
       paths.mkdir(paths.dirname(filename))
       utils.write_json(filename, checkpoint)
 
@@ -296,7 +296,7 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
       end
       model:float()
       checkpoint.model = model
-      filename = string.format('%s.t7', opt.checkpoint_name)
+      filename = string.format('/data/output/%s.t7', opt.checkpoint_name)
       torch.save(filename, checkpoint)
 
       -- Convert the model back
