@@ -21,7 +21,7 @@ Train a feedforward style transfer model
 cmd:option('-arch', 'c9s1-32,d64,d128,R128,R128,R128,R128,R128,u64,u32,c9s1-3')
 cmd:option('-use_instance_norm', 1)
 cmd:option('-task', 'style', 'style|upsample')
-cmd:option('-h5_file', '/data/input/ms-coco-256.h5')
+cmd:option('-h5_file', '/data/data_sets/ms-coco-256.h5')
 cmd:option('-padding_type', 'reflect-start')
 cmd:option('-tanh_constant', 150)
 cmd:option('-preprocessing', 'vgg')
@@ -35,7 +35,7 @@ cmd:option('-tv_strength', 1e-6)
 -- Options for feature reconstruction loss
 cmd:option('-content_weights', '1.0')
 cmd:option('-content_layers', '16')
-cmd:option('-loss_network', '/data/input/vgg16.t7')
+cmd:option('-loss_network', '/data/data_sets/vgg16.t7')
 
 -- Options for style reconstruction loss
 cmd:option('-style_image', '')
