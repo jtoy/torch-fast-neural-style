@@ -286,7 +286,6 @@ cmd:option('-backend', 'cuda', 'cuda|opencl')
         style_loss_history=style_loss_history,
       }
       local filename = string.format('/data/model_cache/%s.json', opt.checkpoint_name)
-      paths.mkdir(paths.dirname(filename))
       utils.write_json(filename, checkpoint)
 
       -- Save a torch checkpoint; convert the model to float first
