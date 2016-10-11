@@ -35,11 +35,11 @@ Train:
       flag: -tv_strength
       type: float
       default: 1e-6
-    -num_iterations
+    -num_iterations:
       flag: -num_iterations
       type: int
       default: 40000
-    -checkpoint_every
+    -checkpoint_every:
       flag: -checkpoint_every
       type: int
       default: 1000
