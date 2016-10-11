@@ -12,6 +12,12 @@ Inference:
       flag: -median_filter
       type: int
       default: 3
+    -cudnn_benchmark:
+      flag: -cudnn_benchmark
+      type: install
+      default: 0
+      min: 0
+      max: 1
 Train:
   command: bash train.sh
   parameters:
