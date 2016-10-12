@@ -39,7 +39,7 @@ cmd:option('-loss_network', '/data/data_sets/vgg16.t7')
 
 -- Options for style reconstruction loss
 cmd:option('-style_image', '')
-cmd:option('-style_image_size', 400)
+cmd:option('-style_image_size', 256)
 cmd:option('-style_weights', '5.0')
 cmd:option('-style_layers', '4,9,16,23')
 cmd:option('-style_target_type', 'gram|mean')
