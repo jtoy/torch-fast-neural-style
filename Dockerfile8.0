@@ -1,4 +1,5 @@
-FROM cuda:8.0-runtime
+FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu14.04
+ENV DEBIAN_FRONTEND noninteractive
 
 ENV CUDNN_VERSION 5
 LABEL com.nvidia.cudnn.version="5"
@@ -9,24 +10,28 @@ RUN CUDNN_DOWNLOAD_SUM=a87cb2df2e5e7cc0a05e266734e679ee1a2fadad6f06af82a76ed81a2
     tar -xzf cudnn-8.0-linux-x64-v5.1.tgz -C /usr/local --wildcards 'cuda/lib64/libcudnn.so.*' && \
     rm cudnn-8.0-linux-x64-v5.1.tgz && \
     ldconfig
-#FROM kaixhin/cuda-torch
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN apt-get -y update #&& apt-get -y upgrade
+RUN apt-get -y install git
 RUN git clone https://github.com/torch/distro.git /home/ubuntu/torch --recursive
 RUN cd /home/ubuntu/torch; bash install-deps;
 RUN cd /home/ubuntu/torch; ./install.sh
+RUN apt-get -y install libprotobuf-dev protobuf-compiler
+RUN apt-get -y install libatlas-base-dev
 
 RUN /home/ubuntu/torch/install/bin/luarocks install loadcaffe
 
-RUN /home/ubuntu/torch/install/bin/luarocks install torch
+RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install torch
 
-RUN /home/ubuntu/torch/install/bin/luarocks install image
-RUN /home/ubuntu/torch/install/bin/luarocks install lua-cjson
-RUN /home/ubuntu/torch/install/bin/luarocks install nn
-RUN /home/ubuntu/torch/install/bin/luarocks install cutorch
-RUN /home/ubuntu/torch/install/bin/luarocks install cunn
+RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install image
+RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install lua-cjson
+RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install nn
+RUN ldconfig
+RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install cutorch 
+RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install cunn
 
 
-RUN /home/ubuntu/torch/install/bin/luarocks install cudnn
-
+RUN export CUDA_TOOLKIT_ROOT_DIR="/usr/local/cuda" && /home/ubuntu/torch/install/bin/luarocks install cudnn
+RUN apt-get -y install libhdf5-serial-dev
 RUN /home/ubuntu/torch/install/bin/luarocks install https://raw.githubusercontent.com/deepmind/torch-hdf5/master/hdf5-0-0.rockspec
