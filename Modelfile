@@ -28,7 +28,7 @@ Train:
     -style_image_size:
       flag: -style_image_size
       type: int
-      default: 400
+      default: 256
     -style_weights:
       flag: -style_weights
       type: float
