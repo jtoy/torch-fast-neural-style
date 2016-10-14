@@ -32,11 +32,11 @@ Train:
     -style_weights:
       flag: -style_weights
       type: float
-      default: 1.0
+      default: 5.0
     -content_weights:
       flag: -content_weights
       type: float
-      default: 5.0
+      default: 1.0
     -tv_strength:
       flag: -tv_strength
       type: float
