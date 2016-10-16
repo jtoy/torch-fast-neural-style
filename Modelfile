@@ -4,6 +4,7 @@ Inference:
     --input:
       flag: -input_image
       type: file
+      required: true
     -image_size:
       flag: -image_size
       type: int
