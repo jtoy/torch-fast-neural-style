@@ -9,6 +9,7 @@ Inference:
       flag: -image_size
       type: int
       default: 1024
+      required: true
     -median_filter:
       flag: -median_filter
       type: int
