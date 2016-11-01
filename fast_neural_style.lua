@@ -23,7 +23,7 @@ cmd:option('-median_filter', 3)
 cmd:option('-timing', 0)
 
 -- Input / output options
-cmd:option('-input_image', '')
+cmd:option('-input', '')
 cmd:option('-output_image', '')
 cmd:option('-input_dir', '')
 cmd:option('-output_dir', '')
@@ -38,8 +38,8 @@ cmd:option('-cudnn_benchmark', 0)
 local function main()
   local opt = cmd:parse(arg)
 
-  if (opt.input_image == '') and (opt.input_dir == '') then
-    error('Must give exactly one of -input_image or -input_dir')
+  if (opt.input == '') and (opt.input_dir == '') then
+    error('Must give exactly one of -input or -input_dir')
   end
 
   local dtype, use_cudnn = utils.setup_gpu(opt.gpu, opt.backend, opt.use_cudnn)
@@ -112,11 +112,11 @@ local function main()
         run_image(in_path, out_path)
       end
     end
-  elseif opt.input_image ~= '' then
+  elseif opt.input ~= '' then
     if opt.output_image == '' then
-      error('Must give -output_image with -input_image')
+      error('Must give -output_image with -input')
     end
-    run_image(opt.input_image, opt.output_image)
+    run_image(opt.input, opt.output_image)
   end
 end
 
