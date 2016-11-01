@@ -1,7 +1,7 @@
 Inference:
   command: bash inference.sh
   parameters:
-    --input:
+    -input_image:
       flag: -input_image
       type: file
       required: true
