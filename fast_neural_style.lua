@@ -18,7 +18,7 @@ local cmd = torch.CmdLine()
 
 -- Model options
 cmd:option('-model', '/data/model_cache/model.t7')
-cmd:option('-image_size', 1026)
+cmd:option('-image_size', 2560)
 cmd:option('-median_filter', 3)
 cmd:option('-timing', 0)
 
