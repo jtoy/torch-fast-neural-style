@@ -29,7 +29,7 @@ cmd:option('-input_dir', '')
 cmd:option('-output_dir', '')
 
 -- GPU options
-cmd:option('-gpu', -1)
+cmd:option('-gpu', 0)
 cmd:option('-backend', 'cuda')
 cmd:option('-use_cudnn', 1)
 cmd:option('-cudnn_benchmark', 0)
