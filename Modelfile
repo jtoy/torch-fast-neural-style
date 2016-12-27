@@ -12,10 +12,10 @@ Inference:
     -median_filter:
       flag: -median_filter
       type: int
-      default: 3
+      default: 0
     -cudnn_benchmark:
       flag: -cudnn_benchmark
-      type: install
+      type: int
       default: 0
       min: 0
       max: 1
